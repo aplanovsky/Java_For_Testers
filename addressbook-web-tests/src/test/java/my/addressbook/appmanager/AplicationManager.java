@@ -1,25 +1,20 @@
-package my.addressbook;
+package my.addressbook.appmanager;
 
+import my.addressbook.model.GroupDate;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+
 import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.fail;
 
-public class TestBase {
+public class AplicationManager {
   private WebDriver driver;
   private String baseUrl;
   private boolean acceptNextAlert = true;
   private StringBuffer verificationErrors = new StringBuffer();
 
-
-
-
-
-  @BeforeClass(alwaysRun = true)
-  public void setUp() throws Exception {
+  public void init() {
     driver = new FirefoxDriver();
     baseUrl = "https://www.katalon.com/";
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -36,17 +31,17 @@ public class TestBase {
     driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Password:'])[1]/following::input[2]")).click();
   }
 
-  protected void returnToGroupPage() {
+  public void returnToGroupPage() {
     driver.findElement(By.xpath("//html")).click();
     driver.findElement(By.linkText("group page")).click();
     driver.findElement(By.xpath("//html")).click();
   }
 
-  protected void submitGroupCreation() {
+  public void submitGroupCreation() {
     driver.findElement(By.name("submit")).click();
   }
 
-  protected void fieldGroupForm(GroupDate groupDate) {
+  public void fieldGroupForm(GroupDate groupDate) {
     driver.findElement(By.name("group_name")).click();
     driver.findElement(By.name("group_name")).clear();
     driver.findElement(By.name("group_name")).sendKeys(groupDate.getName());
@@ -57,17 +52,16 @@ public class TestBase {
     driver.findElement(By.name("group_footer")).sendKeys(groupDate.getFooter());
   }
 
-  protected void initGroupCreation() {
+  public void initGroupCreation() {
     driver.findElement(By.name("new")).click();
   }
 
-  protected void goToGroupPage() {
+  public void goToGroupPage() {
     driver.findElement(By.xpath("//html")).click();
     driver.findElement(By.linkText("groups")).click();
   }
 
-  @AfterClass(alwaysRun = true)
-  public void tearDown() throws Exception {
+  public void stop() {
     driver.quit();
     String verificationErrorString = verificationErrors.toString();
     if (!"".equals(verificationErrorString)) {
@@ -108,11 +102,11 @@ public class TestBase {
     }
   }
 
-  protected void deleteSelectedGroup() {
+  public void deleteSelectedGroup() {
     driver.findElement(By.name("delete")).click();
   }
 
-  protected void selectGroup() {
+  public void selectGroup() {
     driver.findElement(By.name("selected[]")).click();
   }
 }

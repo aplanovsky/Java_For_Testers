@@ -1,4 +1,4 @@
-package my.addressbook;
+package my.addressbook.model;
 
 public class GroupDate {
   private final String name;

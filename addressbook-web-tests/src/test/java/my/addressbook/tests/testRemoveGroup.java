@@ -1,4 +1,4 @@
-package my.addressbook;
+package my.addressbook.tests;
 
 
 import org.testng.annotations.Test;
@@ -8,10 +8,10 @@ public class testRemoveGroup extends TestBase {
 
   @Test
   private void testUntitledTestCase() throws Exception {
-    goToGroupPage();
-    selectGroup();
-    deleteSelectedGroup();
-    returnToGroupPage();
+    app.goToGroupPage();
+    app.selectGroup();
+    app.deleteSelectedGroup();
+    app.returnToGroupPage();
   }
 
 
