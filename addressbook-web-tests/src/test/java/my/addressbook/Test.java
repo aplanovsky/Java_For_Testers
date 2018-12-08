@@ -15,7 +15,7 @@ public class Test {
 
     //3.x final version onwards
     System.setProperty("webdriver.gecko.driver.driver", "./geckodriver.exe");
-    driver = new FirefoxDriver();
+    driver = (WebDriver) new FirefoxDriver();
     driver.get("http://www.facebook.com");
     driver.quit();
   }
