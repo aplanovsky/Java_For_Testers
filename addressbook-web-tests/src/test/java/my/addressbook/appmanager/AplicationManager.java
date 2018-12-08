@@ -8,13 +8,17 @@ import java.util.concurrent.TimeUnit;
 import static org.testng.Assert.fail;
 
 public class AplicationManager extends SessionHelper {
-  protected WebDriver driver;
+  private WebDriver driver;
   private SessionHelper sessionHelper;
   private  NavigationHelper navigationHelper;
-  private GroupHelper groupHelper = new GroupHelper();
+  private GroupHelper groupHelper = new GroupHelper(driver);
   private String baseUrl;
   private boolean acceptNextAlert = true;
   private StringBuffer verificationErrors = new StringBuffer();
+
+  public AplicationManager(WebDriver driver) {
+    super(driver);
+  }
 
   public void init() {
     driver = (WebDriver) new FirefoxDriver();

@@ -3,15 +3,14 @@ package my.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class NavigationHelper {
-  private WebDriver driver;
+public class NavigationHelper extends HelperBase {
 
   public NavigationHelper(WebDriver driver) {
-
+    super(driver);
   }
 
   public void goToGroupPage() {
-   driver.findElement(By.xpath("//html")).click();
-   driver.findElement(By.linkText("groups")).click();
+    clik(By.xpath("//html"));
+    clik(By.linkText("groups"));
   }
 }
