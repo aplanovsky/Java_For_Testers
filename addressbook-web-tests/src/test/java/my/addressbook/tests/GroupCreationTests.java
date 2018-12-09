@@ -2,7 +2,7 @@ package my.addressbook.tests;
 
 
 import my.addressbook.model.GroupDate;
-import my.addressbook.Test;
+import org.testng.annotations.Test;
 
 public class GroupCreationTests extends TestBase {
 
