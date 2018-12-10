@@ -20,6 +20,7 @@ public class AplicationManager extends SessionHelper {
   private boolean acceptNextAlert = true;
   private StringBuffer verificationErrors = new StringBuffer();
   private String browser;
+
   private  AplicationManager(driver) {
     super(driver);
   }
