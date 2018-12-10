@@ -13,36 +13,36 @@ import static org.testng.Assert.fail;
 public class AplicationManager extends SessionHelper {
   private WebDriver driver;
   private SessionHelper sessionHelper;
-  private  NavigationHelper navigationHelper;
+  private NavigationHelper navigationHelper;
   private GroupHelper groupHelper = new GroupHelper(driver);
   private ContactHelper contactHelper = new ContactHelper(driver);
   private String baseUrl;
   private boolean acceptNextAlert = true;
   private StringBuffer verificationErrors = new StringBuffer();
   private String browser;
-  public AplicationManager(WebDriver driver) {
+  private  AplicationManager(driver) {
     super(driver);
   }
 
-  public AplicationManager(String browser) {
+  public  AplicationManager(String browser) {
     super();
     this.browser = browser;
   }
 
   public void init() {
 
-    if (browser == BrowserType.FIREFOX){
-      driver = (WebDriver) new FirefoxDriver();
-    }else if(browser == BrowserType.CHROME) {
+    if (browser.equals(BrowserType.MOZILLA)){
+      driver =  new FirefoxDriver();
+    }else if(browser.equals( BrowserType.DEFAULT)) {
       driver = new ChromeDriver();
-    } else if (browser == BrowserType.INTERNET_EXPLORER){
+    } else if (browser.equals( BrowserType.INTERNET_EXPLORER)){
       driver = new InternetExplorerDriver();
     }
 
-    driver = (WebDriver) new FirefoxDriver();
+    driver =  new FirefoxDriver();
     baseUrl = "https://www.katalon.com/";
-    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-    driver.get("http://localhost/addressbook/addressbook/group.php");
+    driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+    driver.get("http://localhost/addressbook/addressbook/");
     groupHelper = new GroupHelper(driver);
     navigationHelper = new NavigationHelper(driver);
     sessionHelper = new SessionHelper(driver);
@@ -59,7 +59,7 @@ public class AplicationManager extends SessionHelper {
     }
   }
 
-  private boolean isElementPresent(By by) {
+  public boolean isElementPresent(By by) {
     try {
     driver.findElement(by);
       return true;
@@ -68,7 +68,7 @@ public class AplicationManager extends SessionHelper {
     }
   }
 
-  private boolean isAlertPresent() {
+  public boolean isAlertPresent() {
     try {
    driver.switchTo().alert();
       return true;

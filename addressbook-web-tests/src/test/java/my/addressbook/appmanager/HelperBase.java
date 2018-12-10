@@ -17,12 +17,12 @@ public class HelperBase {
   }
 
   protected void type(By locator, String text) {
-    clik(By.name(locator));
+    clik(By.name(String.valueOf(locator)));
     if(text != null){
-      String  existingText = driver.findElement(By.name(locator)).getAttribute("value");
+      String  existingText = driver.findElement(By.name(String.valueOf(locator))).getAttribute("value");
       if (! text.equals(existingText)){
-        driver.findElement(By.name(locator)).clear();
-        driver.findElement(By.name(locator)).sendKeys(text);
+        driver.findElement(By.name(String.valueOf(locator))).clear();
+        driver.findElement(By.name(String.valueOf(locator))).sendKeys(text);
       }
     }
   }

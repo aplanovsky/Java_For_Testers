@@ -22,23 +22,25 @@ public class GroupHelper extends HelperBase{
   }
 
   public void fieldGroupForm(GroupDate groupDate) {
-    type("group_name", groupDate.getName());
-    type("group_header", groupDate.getHeader());
+    type(By.name("group_name"), groupDate.getName());
+    type(By.name("group_header"), groupDate.getHeader());
     driver.findElement(By.name("group_footer")).clear();
     driver.findElement(By.name("group_footer")).sendKeys(groupDate.getFooter());
   }
+  public void selectGroup(int index) {
+    driver.findElements(By.name("selected[]*")).get(index).click();
+    clik(By.name("selected[]"));
+  }
 
   public void initGroupCreation() {
-    clik(By.name("new"));
+    clik(By.name("selected[]*"));
   }
 
   public void deleteSelectedGroup() {
     clik(By.name("delete"));
   }
 
-  public void selectGroup() {
-    clik(By.name("selected[]"));
-  }
+
 
   public void initGroupModification() {
     clik(By.name("edit"));
@@ -56,6 +58,10 @@ public class GroupHelper extends HelperBase{
   }
 
   public boolean isThereAGroup() {
-    return isElementPresent(By.name("selected[]"));
+    return isElementPresent(By.name("selected[]*"));
+  }
+
+  public int getGroupCount() {
+   return driver.findElements(By.name("selected[]*")).size();
   }
 }
