@@ -8,7 +8,7 @@ public class ContactData {
   public  ContactData(String firstname, String secondname, String group){
     this.firstname = firstname;
     this.secondname = secondname;
-    this.secondname = group;
+    this.group = group;
   }
   public String getFirstname(){return firstname;}
   public String getLastname(){return secondname;}

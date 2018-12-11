@@ -11,7 +11,7 @@ public class Test {
     //System.setProperty("webdriver.firefox.marionette", "./geckodriver.exe");
 
     //beta 1 version
-    System.setProperty("webdriver.gecko.driver", "./geckodriver.exe");
+   // System.setProperty("webdriver.gecko.driver", "./geckodriver.exe");
 
     //3.x final version onwards
     System.setProperty("webdriver.gecko.driver.driver", "./geckodriver.exe");

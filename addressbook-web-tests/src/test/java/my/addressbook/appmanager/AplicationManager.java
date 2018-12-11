@@ -19,31 +19,31 @@ public class AplicationManager extends SessionHelper {
   private String baseUrl;
   private boolean acceptNextAlert = true;
   private StringBuffer verificationErrors = new StringBuffer();
-  private String browser;
+  private int browser;
 
-  private  AplicationManager(driver) {
-    super(driver);
-  }
+//  private  AplicationManager(driver) {
+//    super(driver);
+//  }
 
-  public  AplicationManager(String browser) {
-    super();
-    this.browser = browser;
+  public  AplicationManager(int browser) {
+    super(null);
+    this.browser =  browser;
   }
 
   public void init() {
 
-    if (browser.equals(BrowserType.MOZILLA)){
+    if (browser == (BrowserType.MOZILLA)){
       driver =  new FirefoxDriver();
-    }else if(browser.equals( BrowserType.DEFAULT)) {
+    }else if(browser ==( BrowserType.DEFAULT)) {
       driver = new ChromeDriver();
-    } else if (browser.equals( BrowserType.INTERNET_EXPLORER)){
+    } else if (browser ==( BrowserType.INTERNET_EXPLORER)){
       driver = new InternetExplorerDriver();
     }
 
     driver =  new FirefoxDriver();
     baseUrl = "https://www.katalon.com/";
-    driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-    driver.get("http://localhost/addressbook/addressbook/");
+    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    driver.get("http://localhost/addressbook/addressbook/group.php");
     groupHelper = new GroupHelper(driver);
     navigationHelper = new NavigationHelper(driver);
     sessionHelper = new SessionHelper(driver);
