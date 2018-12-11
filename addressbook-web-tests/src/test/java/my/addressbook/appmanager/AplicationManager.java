@@ -22,7 +22,7 @@ public class AplicationManager extends SessionHelper {
   private int browser;
 
 //  private  AplicationManager(driver) {
-//    super(driver);
+//    super();
 //  }
 
   public  AplicationManager(int browser) {

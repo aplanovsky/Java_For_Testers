@@ -5,6 +5,7 @@ import my.addressbook.model.GroupDate;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class GroupCreationTests extends TestBase {
@@ -14,9 +15,21 @@ public class GroupCreationTests extends TestBase {
 
     app.getNavigationHelper().goToGroupPage();
     List<GroupDate> before = app.getGroupHelper().getGroupList();
-    app.getGroupHelper().createGroup(new GroupDate(null,"test1", null, null));
+    GroupDate group = new GroupDate(0 , "test2", "test2", "test3");
+    app.getGroupHelper().createGroup(group);
     List<GroupDate> after = app.getGroupHelper().getGroupList();
     Assert.assertEquals(after.size(), before.size() + 1);
+
+
+    int max = 0;
+    for(GroupDate g : after ){
+      if(g.getId() > max){
+        max = g.getId();
+      }
+    }
+    group.setId(max);
+    before.add(group);
+    Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
   }
 
 }
