@@ -9,7 +9,7 @@ public class GroupDate {
 
 
   public GroupDate(int id, String name, String header, String footer) {
-    this.id = 0;
+    this.id = Integer.MAX_VALUE;
     this.name = name;
     this.header = header;
     this.footer = footer;
@@ -30,15 +30,12 @@ public class GroupDate {
 
     GroupDate groupDate = (GroupDate) o;
 
-    if (id != groupDate.id) return false;
     return name != null ? name.equals(groupDate.name) : groupDate.name == null;
   }
 
   @Override
   public int hashCode() {
-    int result = id;
-    result = 31 * result + (name != null ? name.hashCode() : 0);
-    return result;
+    return name != null ? name.hashCode() : 0;
   }
 
   public int getId() {

@@ -33,6 +33,7 @@ public class AplicationManager extends SessionHelper {
   public void init() {
 
     if (browser == (BrowserType.MOZILLA)){
+      System.setProperty("webdriver.gecko.driver", "D:\\JAVA-examples\\TOOLS\\geckodriver.exe");
       driver =  new FirefoxDriver();
     }else if(browser ==( BrowserType.DEFAULT)) {
       driver = new ChromeDriver();
@@ -93,14 +94,14 @@ public class AplicationManager extends SessionHelper {
     }
   }
 
-  public GroupHelper getGroupHelper() {
+  public GroupHelper group() {
     return groupHelper;
   }
   public ContactHelper getContactHelper() {
     return contactHelper;
   }
 
-  public NavigationHelper getNavigationHelper() {
+  public NavigationHelper goTo() {
     return navigationHelper;
   }
 }
