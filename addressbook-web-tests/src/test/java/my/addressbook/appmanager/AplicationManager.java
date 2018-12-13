@@ -6,6 +6,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import sun.plugin2.util.BrowserType;
 import java.lang.String;
+import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.fail;
@@ -33,7 +35,6 @@ public class AplicationManager extends SessionHelper {
   public void init() {
 
     if (browser == (BrowserType.MOZILLA)){
-      System.setProperty("webdriver.gecko.driver", "D:\\JAVA-examples\\TOOLS\\geckodriver.exe");
       driver =  new FirefoxDriver();
     }else if(browser ==( BrowserType.DEFAULT)) {
       driver = new ChromeDriver();
@@ -41,10 +42,75 @@ public class AplicationManager extends SessionHelper {
       driver = new InternetExplorerDriver();
     }
 
-    driver =  new FirefoxDriver();
+    driver =  new WebDriver() {
+      @Override
+      public void get(String url) {
+
+      }
+
+      @Override
+      public String getCurrentUrl() {
+        return null;
+      }
+
+      @Override
+      public String getTitle() {
+        return null;
+      }
+
+      @Override
+      public List<WebElement> findElements(By by) {
+        return null;
+      }
+
+      @Override
+      public WebElement findElement(By by) {
+        return null;
+      }
+
+      @Override
+      public String getPageSource() {
+        return null;
+      }
+
+      @Override
+      public void close() {
+
+      }
+
+      @Override
+      public void quit() {
+
+      }
+
+      @Override
+      public Set<String> getWindowHandles() {
+        return null;
+      }
+
+      @Override
+      public String getWindowHandle() {
+        return null;
+      }
+
+      @Override
+      public TargetLocator switchTo() {
+        return null;
+      }
+
+      @Override
+      public Navigation navigate() {
+        return null;
+      }
+
+      @Override
+      public Options manage() {
+        return null;
+      }
+    };
     baseUrl = "https://www.katalon.com/";
-    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-    driver.get("http://localhost/addressbook/addressbook/group.php");
+    driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+    driver.get("http://localhost/addressbook/addressbook/");
     groupHelper = new GroupHelper(driver);
     navigationHelper = new NavigationHelper(driver);
     sessionHelper = new SessionHelper(driver);
