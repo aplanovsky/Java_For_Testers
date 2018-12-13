@@ -2,12 +2,12 @@ package my.addressbook.tests;
 
 
 import my.addressbook.model.GroupDate;
-import org.testng.Assert;
+import my.addressbook.model.Groups;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.util.List;
-import java.util.Set;
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.MatcherAssert.*;
+import static org.testng.Assert.*;
 
 public class GroupDeletionTests extends TestBase {
 
@@ -22,15 +22,12 @@ public class GroupDeletionTests extends TestBase {
 
     @Test
     private void testGroupDeletion() {
-      Set<GroupDate> before = app.group().all();
+      Groups before = app.group().all();
       GroupDate deletedGroup = before.iterator().next();
       app.group().delete(deletedGroup);
-      Set<GroupDate> after = app.group().all();
-      Assert.assertEquals(after.size(), before.size() - 1);
-
-      before.remove(deletedGroup);
-      Assert.assertEquals(before, after);
-
+      Groups after = app.group().all();
+      assertEquals(after.size(), before.size() - 1);
+      assertThat(after, equalTo(before.wihouthAdded(deletedGroup)));
     }
 
   }

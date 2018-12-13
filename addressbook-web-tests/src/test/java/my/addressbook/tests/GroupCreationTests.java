@@ -2,12 +2,10 @@ package my.addressbook.tests;
 
 
 import my.addressbook.model.GroupDate;
-import org.testng.Assert;
+import my.addressbook.model.Groups;
 import org.testng.annotations.Test;
-
-import java.util.Comparator;
-import java.util.List;
-import java.util.Set;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.*;
 
 public class GroupCreationTests extends TestBase {
 
@@ -15,15 +13,15 @@ public class GroupCreationTests extends TestBase {
   public void testGroupCreation() {
 
     app.goTo().groupPage();
-    Set<GroupDate> before = app.group().all();
+    Groups before = app.group().all();
     GroupDate group = new GroupDate().withName("test2") ;
     app.group().create(group);
-    Set<GroupDate> after = app.group().all();
-    Assert.assertEquals(after.size(), before.size() + 1);
+    Groups after = app.group().all();
+    assertThat(after.size(), equalTo(before.size() + 1));
 
-    group.withId(after.stream().mapToInt((g) -> g.getId() ).max().getAsInt());
-    before.add(group);
-    Assert.assertEquals(before, after);
+    assertThat(after, equalTo(
+            before.withAdded(
+                    group.withId(after.stream().mapToInt((g) -> g.getId() ).max().getAsInt()))));
   }
 
 }
