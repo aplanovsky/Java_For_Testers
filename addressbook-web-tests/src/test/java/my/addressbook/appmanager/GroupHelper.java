@@ -19,9 +19,7 @@ public class GroupHelper extends HelperBase{
   }
 
   public void returnToGroupPage() {
-    click(By.xpath("//html"));
     click(By.linkText("group page"));
-    click(By.xpath("//html"));
   }
 
   public void submitGroupCreation() {
@@ -31,8 +29,8 @@ public class GroupHelper extends HelperBase{
   public void fieldGroupForm(GroupDate groupDate) {
     type(By.name("group_name"), groupDate.getName());
     type(By.name("group_header"), groupDate.getHeader());
-    driver.findElement(By.name("group_footer")).clear();
-    driver.findElement(By.name("group_footer")).sendKeys(groupDate.getFooter());
+    type(By.name("group_footer"), groupDate.getFooter());
+
   }
 
 
@@ -42,13 +40,12 @@ public class GroupHelper extends HelperBase{
   }
 
   public void initGroupCreation() {
-    click(By.name("selected[]*"));
+    click(By.name("new"));
   }
 
   public void deleteSelectedGroup() {
     click(By.name("delete"));
   }
-
 
 
   public void initGroupModification() {
@@ -86,15 +83,14 @@ public class GroupHelper extends HelperBase{
   }
 
   public boolean isThereAGroup() {
-    return isElementPresent(By.name("selected[]*"));
+    return isElementPresent(By.name("selected[]"));
   }
 
   public int  count() {
-   return driver.findElements(By.name("selected[]*")).size();
+   return driver.findElements(By.name("selected[]")).size();
   }
+
   private Groups groupCache = null;
-
-
   public Groups all() {
     if (groupCache != null){
       return new Groups(groupCache);

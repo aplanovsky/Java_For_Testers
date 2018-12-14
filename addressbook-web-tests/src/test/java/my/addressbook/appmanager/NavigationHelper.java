@@ -2,6 +2,7 @@ package my.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class NavigationHelper extends HelperBase {
 
@@ -15,17 +16,17 @@ public class NavigationHelper extends HelperBase {
             && isElementPresent(By.name("new"))){
       return;
     }
-    click(By.xpath("//html"));
+    //click(By.xpath("//html"));
     click(By.linkText("groups"));
   }
-  public void goToNamePage() {
+  public void goToHomePage() {
     if(isElementPresent(By.id("maintable"))){
       return;
     }
-    click(By.xpath("//html"));
+   // click(By.xpath("//html"));
     click(By.linkText("name"));
   }
 
-  public void gotoHomePage() {
-  }
+//  public void gotoHomePage() {
+//  }
 }

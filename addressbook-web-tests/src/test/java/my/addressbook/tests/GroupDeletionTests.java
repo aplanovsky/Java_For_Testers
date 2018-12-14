@@ -11,7 +11,7 @@ import static org.testng.Assert.*;
 
 public class GroupDeletionTests extends TestBase {
 
-  public class GroupModificationTests extends TestBase {
+
     @BeforeMethod
     public void ensurePreconditions() {
       app.goTo().groupPage();
@@ -21,7 +21,7 @@ public class GroupDeletionTests extends TestBase {
     }
 
     @Test
-    private void testGroupDeletion() {
+    public void testGroupDeletion() {
       Groups before = app.group().all();
       GroupDate deletedGroup = before.iterator().next();
       app.group().delete(deletedGroup);
@@ -32,4 +32,3 @@ public class GroupDeletionTests extends TestBase {
     }
 
   }
-}

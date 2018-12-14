@@ -1,6 +1,7 @@
 package my.addressbook;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class Test {
@@ -15,7 +16,7 @@ public class Test {
 
     //3.x final version onwards
     System.setProperty("webdriver.gecko.driver.driver", "./geckodriver.exe");
-    driver = (WebDriver) new FirefoxDriver();
+    driver = (WebDriver) new ChromeDriver();
     driver.get("http://www.facebook.com");
     driver.quit();
   }

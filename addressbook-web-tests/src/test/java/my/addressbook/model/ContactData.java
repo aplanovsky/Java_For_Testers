@@ -1,5 +1,7 @@
 package my.addressbook.model;
 
+import java.io.File;
+
 public class ContactData {
 
   private int id;
@@ -10,7 +12,16 @@ public class ContactData {
   private String mobilePhone;
   private String workPhone;
   private String allPhones;
+  private File photo;
 
+  public File getPhoto() {
+    return photo;
+  }
+
+  public ContactData withtPhoto(File photo) {
+    this.photo = photo;
+    return this;
+  }
 
   public ContactData withAllPhones(String allPhones) {
     this.allPhones = allPhones;

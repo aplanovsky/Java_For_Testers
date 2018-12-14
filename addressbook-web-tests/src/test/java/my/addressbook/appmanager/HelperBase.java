@@ -5,6 +5,8 @@ import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
+import java.io.File;
+
 public class HelperBase {
   protected WebDriver driver;
 
@@ -17,15 +19,22 @@ public class HelperBase {
   }
 
   protected void type(By locator, String text) {
-    click(By.name(String.valueOf(locator)));
+    click(locator);
     if(text != null){
-      String  existingText = driver.findElement(By.name(String.valueOf(locator))).getAttribute("value");
+      String  existingText = driver.findElement(locator).getAttribute("value");
       if (! text.equals(existingText)){
-        driver.findElement(By.name(String.valueOf(locator))).clear();
-        driver.findElement(By.name(String.valueOf(locator))).sendKeys(text);
+        driver.findElement(locator).clear();
+        driver.findElement(locator).sendKeys(text);
       }
     }
   }
+
+  protected void attach (By locator, File file){
+    if (file != null){
+      driver.findElement(locator).sendKeys(file.getAbsolutePath());
+    }
+  }
+
   public boolean isAlertPreasent(){
     try {
       driver.switchTo().alert();

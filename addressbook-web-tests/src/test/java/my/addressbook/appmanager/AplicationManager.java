@@ -30,8 +30,9 @@ public class AplicationManager {
     } else if (browser.equals(BrowserType.IE)) {
       driver = new InternetExplorerDriver();
     }
+    System.setProperty("webdriver.gecko.driver.driver", "./geckodriver.exe");
     driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-    driver.get("http://localhost/addressbook/addressbook/group.php");
+    driver.get("http://localhost/addressbook/");
     groupHelper = new GroupHelper(driver);
     contactHelper = new ContactHelper(driver);
     navigationHelper = new NavigationHelper(driver);
