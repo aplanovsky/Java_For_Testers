@@ -12,12 +12,12 @@ public class HelperBase {
     this.driver = driver;
   }
 
-  protected void clik(By locator) {
+  protected void click(By locator) {
     driver.findElement(locator).click();
   }
 
   protected void type(By locator, String text) {
-    clik(By.name(String.valueOf(locator)));
+    click(By.name(String.valueOf(locator)));
     if(text != null){
       String  existingText = driver.findElement(By.name(String.valueOf(locator))).getAttribute("value");
       if (! text.equals(existingText)){

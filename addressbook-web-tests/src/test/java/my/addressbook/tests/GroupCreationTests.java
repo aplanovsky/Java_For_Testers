@@ -30,7 +30,7 @@ public class GroupCreationTests extends TestBase {
 
     app.goTo().groupPage();
     Groups before = app.group().all();
-    GroupDate group = new GroupDate().withName("test'") ;
+    GroupDate group = new GroupDate().withName("test'");
     app.group().create(group);
     assertThat(app.group().count(), equalTo(before.size()));
     Groups after = app.group().all();

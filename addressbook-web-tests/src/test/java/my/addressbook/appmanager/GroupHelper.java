@@ -19,13 +19,13 @@ public class GroupHelper extends HelperBase{
   }
 
   public void returnToGroupPage() {
-    clik(By.xpath("//html"));
-    clik(By.linkText("group page"));
-    clik(By.xpath("//html"));
+    click(By.xpath("//html"));
+    click(By.linkText("group page"));
+    click(By.xpath("//html"));
   }
 
   public void submitGroupCreation() {
-    clik(By.name("submit"));
+    click(By.name("submit"));
   }
 
   public void fieldGroupForm(GroupDate groupDate) {
@@ -38,25 +38,25 @@ public class GroupHelper extends HelperBase{
 
   public void selectGroupById(int id) {
     driver.findElement(By.cssSelector("input[value='" + id + "']")).click();
-    clik(By.name("selected[]"));
+    click(By.name("selected[]"));
   }
 
   public void initGroupCreation() {
-    clik(By.name("selected[]*"));
+    click(By.name("selected[]*"));
   }
 
   public void deleteSelectedGroup() {
-    clik(By.name("delete"));
+    click(By.name("delete"));
   }
 
 
 
   public void initGroupModification() {
-    clik(By.name("edit"));
+    click(By.name("edit"));
   }
 
   public void submitGroupModification() {
-    clik(By.name("update"));
+    click(By.name("update"));
   }
 
   public void create(GroupDate group) {

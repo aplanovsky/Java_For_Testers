@@ -15,14 +15,17 @@ public class NavigationHelper extends HelperBase {
             && isElementPresent(By.name("new"))){
       return;
     }
-    clik(By.xpath("//html"));
-    clik(By.linkText("groups"));
+    click(By.xpath("//html"));
+    click(By.linkText("groups"));
   }
   public void goToNamePage() {
     if(isElementPresent(By.id("maintable"))){
       return;
     }
-    clik(By.xpath("//html"));
-    clik(By.linkText("name"));
+    click(By.xpath("//html"));
+    click(By.linkText("name"));
+  }
+
+  public void gotoHomePage() {
   }
 }
