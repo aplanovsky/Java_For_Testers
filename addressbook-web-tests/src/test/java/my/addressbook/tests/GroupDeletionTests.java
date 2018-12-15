@@ -1,7 +1,7 @@
 package my.addressbook.tests;
 
 
-import my.addressbook.model.GroupDate;
+import my.addressbook.model.GroupData;
 import my.addressbook.model.Groups;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -16,14 +16,14 @@ public class GroupDeletionTests extends TestBase {
     public void ensurePreconditions() {
       app.goTo().groupPage();
       if (app.group().all().size() == 0) {
-        app.group().create(new GroupDate().withName("test1"));
+        app.group().create(new GroupData().withName("test1"));
       }
     }
 
     @Test
     public void testGroupDeletion() {
       Groups before = app.group().all();
-      GroupDate deletedGroup = before.iterator().next();
+      GroupData deletedGroup = before.iterator().next();
       app.group().delete(deletedGroup);
       assertThat(app.group().count(), equalTo(before.size() - 1));
       Groups after = app.group().all();

@@ -1,15 +1,12 @@
 package my.addressbook.appmanager;
 
-import my.addressbook.model.GroupDate;
+import my.addressbook.model.GroupData;
 import my.addressbook.model.Groups;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class GroupHelper extends HelperBase{
 
@@ -26,10 +23,10 @@ public class GroupHelper extends HelperBase{
     click(By.name("submit"));
   }
 
-  public void fieldGroupForm(GroupDate groupDate) {
-    type(By.name("group_name"), groupDate.getName());
-    type(By.name("group_header"), groupDate.getHeader());
-    type(By.name("group_footer"), groupDate.getFooter());
+  public void fieldGroupForm(GroupData groupData) {
+    type(By.name("group_name"), groupData.getName());
+    type(By.name("group_header"), groupData.getHeader());
+    type(By.name("group_footer"), groupData.getFooter());
 
   }
 
@@ -56,7 +53,7 @@ public class GroupHelper extends HelperBase{
     click(By.name("update"));
   }
 
-  public void create(GroupDate group) {
+  public void create(GroupData group) {
     initGroupCreation();
     fieldGroupForm(group);
     submitGroupCreation();
@@ -64,7 +61,7 @@ public class GroupHelper extends HelperBase{
     returnToGroupPage();
   }
 
-  public void modify(GroupDate group) {
+  public void modify(GroupData group) {
     selectGroupById(group.getId());
     initGroupModification();
     fieldGroupForm(group);
@@ -75,7 +72,7 @@ public class GroupHelper extends HelperBase{
 
 
 
-  public void delete(GroupDate grop) {
+  public void delete(GroupData grop) {
     selectGroupById(grop.getId());
     deleteSelectedGroup();
     groupCache = null;
@@ -100,7 +97,7 @@ public class GroupHelper extends HelperBase{
     for(WebElement element : elements){
       String name = element.getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      groupCache.add(new GroupDate().withId(id).withName(name));
+      groupCache.add(new GroupData().withId(id).withName(name));
     }
     return new Groups(groupCache);
   }

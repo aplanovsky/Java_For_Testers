@@ -1,8 +1,7 @@
 package my.addressbook.tests;
 
-import my.addressbook.model.GroupDate;
+import my.addressbook.model.GroupData;
 import my.addressbook.model.Groups;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -15,7 +14,7 @@ public class GroupModificationTests extends TestBase {
   public void ensurePreconditions(){
     app.goTo().groupPage();
     if( app.group().all().size() == 0){
-      app.group().create(new GroupDate().withName("test1"));
+      app.group().create(new GroupData().withName("test1"));
     }
   }
 
@@ -23,8 +22,8 @@ public class GroupModificationTests extends TestBase {
   public void testGroupModification(){
 
     Groups before = app.group().all();
-    GroupDate modifiedGroup = before.iterator().next();
-    GroupDate group = new GroupDate().withId(modifiedGroup.getId())
+    GroupData modifiedGroup = before.iterator().next();
+    GroupData group = new GroupData().withId(modifiedGroup.getId())
             .withName( "test1").withHeader( "test2").withFooter("test3");
     app.goTo().groupPage();
     app.group().modify(group);
