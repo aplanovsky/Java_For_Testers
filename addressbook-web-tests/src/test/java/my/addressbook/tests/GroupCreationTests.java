@@ -1,6 +1,8 @@
 package my.addressbook.tests;
 
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.thoughtworks.xstream.XStream;
 import my.addressbook.model.GroupData;
 import my.addressbook.model.Groups;
@@ -23,34 +25,52 @@ import static org.hamcrest.MatcherAssert.*;
 public class GroupCreationTests extends TestBase {
 
   @DataProvider
-  public Iterator<Object[]> validGroups() throws IOException {
+//  public Iterator<Object[]> validGroupsFromXml() throws IOException {
+//    List<Object[]> list = new ArrayList<Object[]>();
+//    BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/groups.xml")));
+//    String xml = "";
+//    String line = reader.readLine();
+//    while (line != null){
+//      String[] spliit =  line.split(";");
+//        xml += line;
+////      list.add(new  Object[]{
+////              new GroupData()
+////                      .withName(spliit[0])
+////                      .withHeader(spliit[1])
+////                      .withFooter(spliit[2])
+////              } );
+//      line = reader.readLine();
+//    }
+//    XStream xstream = new XStream();
+//    xstream.processAnnotations(GroupData.class);
+//    List<GroupData> groups = (List<GroupData>) xstream.fromXML(xml);
+//    return groups.stream()
+//            .map((g) -> new Object[] {g})
+//            .collect(Collectors.toList())
+//            .iterator();
+//    //    return list.iterator();
+//  }
+
+  public Iterator<Object[]> validGroupsFromJson() throws IOException {
     List<Object[]> list = new ArrayList<Object[]>();
-    BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/groups.xml")));
-    String xml = "";
+    BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/groups.json")));
+    String json = "";
     String line = reader.readLine();
     while (line != null){
       String[] spliit =  line.split(";");
-        xml += line;
-//      list.add(new  Object[]{
-//              new GroupData()
-//                      .withName(spliit[0])
-//                      .withHeader(spliit[1])
-//                      .withFooter(spliit[2])
-//              } );
+      json += line;
       line = reader.readLine();
     }
-    XStream xstream = new XStream();
-    xstream.processAnnotations(GroupData.class);
-    List<GroupData> groups = (List<GroupData>) xstream.fromXML(xml);
+    Gson gson = new Gson();
+    List<GroupData> groups = gson.fromJson(json, new TypeToken<List<GroupData>>() {}.getType());
     return groups.stream()
             .map((g) -> new Object[] {g})
             .collect(Collectors.toList())
             .iterator();
-    //    return list.iterator();
   }
 
 
-  @Test(dataProvider =  "validGroups")
+  @Test(dataProvider = "validGroupsFromJson")
   public void testGroupCreation(GroupData group) {
 
     app.goTo().groupPage();
