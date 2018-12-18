@@ -40,7 +40,7 @@
 
         <!-- Names the annotated entity class -->
         <mapping class="my.addressbook.model.GroupData"/>
-
+        <mapping class="my.addressbook.model.ContactData"/>
     </session-factory>
 
 </hibernate-configuration>
