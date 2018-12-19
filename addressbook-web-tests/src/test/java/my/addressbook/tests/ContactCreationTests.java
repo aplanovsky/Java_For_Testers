@@ -1,5 +1,6 @@
 package my.addressbook.tests;
 
+import my.addressbook.model.Groups;
 import org.testng.annotations.Test;
 import my.addressbook.model.ContactData;
 
@@ -9,11 +10,17 @@ public class ContactCreationTests extends TestBase {
 
   @Test
   public void testContactCreation() {
+
+    Groups groups = app.db().groups();
+    File photo = new File("src/test/resources/finding.gif");
+    ContactData newContact = (new ContactData()
+            .withFirstname("test_name")
+            .withLastname("test_surname")
+            .withtPhoto(photo)
+            .inGroup(groups.iterator().next()));
     app.goTo().goToHomePage();
     app.contact().initContactCreation();
-    File photo = new File("src/test/resources/finding.gif");
-    app.contact().fillContactForm(
-            new ContactData().withFirstname("test_name").withLastname("test_surname").withtPhoto(photo), true);
+    app.contact().fillContactForm(newContact, true);
     app.contact().submitContactCreation();
     app.contact().returnToHomePage();
   }
