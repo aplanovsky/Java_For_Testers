@@ -1,7 +1,7 @@
 package my.mantis.tests;
 
 
-import my.mantis.appmanager.AplicationManager;
+import my.mantis.appmanager.ApplicationManager;
 import org.openqa.selenium.remote.BrowserType;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
@@ -12,8 +12,8 @@ import org.testng.annotations.BeforeSuite;
 public class TestBase {
 
 
-  protected static final AplicationManager app
-          = new AplicationManager(System.getProperty("browser", BrowserType.CHROME));
+  protected static final ApplicationManager app
+          = new ApplicationManager(System.getProperty("browser", BrowserType.CHROME));
 
 
   @BeforeSuite

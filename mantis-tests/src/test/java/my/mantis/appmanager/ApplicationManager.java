@@ -13,14 +13,14 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-public class AplicationManager {
+public class ApplicationManager {
   private final Properties properties;
   WebDriver driver;
 
 
   private String browser;
 
-  public AplicationManager(String browser) {
+  public ApplicationManager(String browser) {
     this.browser = browser;
     properties = new Properties();
   }
@@ -39,12 +39,18 @@ public class AplicationManager {
 
   }
     //System.setProperty("webdriver.gecko.driver.driver", "./geckodriver.exe");
-    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+    driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
     driver.get(properties.getProperty("web.baseUrl"));
 
   }
 public void stop(){
     driver.quit();
+}
+public HttpSession newSession(){
+    return new HttpSession(this);
+}
+public String getProperty(String key){
+    return properties.getProperty(key);
 }
 
 }
