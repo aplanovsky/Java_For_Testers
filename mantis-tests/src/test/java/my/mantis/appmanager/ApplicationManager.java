@@ -1,6 +1,7 @@
 package my.mantis.appmanager;
 
 
+import my.mantis.tests.RegistrationTests;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -12,17 +13,21 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.MatchResult;
 
 public class ApplicationManager {
   private final Properties properties;
-  WebDriver driver;
+  private WebDriver driver;
 
 
   private String browser;
+  private RegistrationHelper registrationHelper;
+  private FtpHelper ftp;
 
   public ApplicationManager(String browser) {
     this.browser = browser;
     properties = new Properties();
+
   }
 
   public void init() throws IOException {
@@ -30,21 +35,11 @@ public class ApplicationManager {
     properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
 
 
-    if (browser.equals(BrowserType.FIREFOX)) {
-      driver = new FirefoxDriver();
-    } else if (browser.equals(BrowserType.CHROME)) {
-      driver = new ChromeDriver();
-    } else if (browser.equals(BrowserType.IEXPLORE)) {
-      driver = new InternetExplorerDriver();
-
-  }
-    //System.setProperty("webdriver.gecko.driver.driver", "./geckodriver.exe");
-    driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-    driver.get(properties.getProperty("web.baseUrl"));
-
   }
 public void stop(){
-    driver.quit();
+    if (driver != null){
+      driver.quit();
+    }
 }
 public HttpSession newSession(){
     return new HttpSession(this);
@@ -53,4 +48,32 @@ public String getProperty(String key){
     return properties.getProperty(key);
 }
 
+  public RegistrationHelper registration() {
+    if (registrationHelper == null){
+      registrationHelper = new  RegistrationHelper(this);
+    }
+    return registrationHelper;
+  }
+
+  public FtpHelper ftp(){
+    if (ftp == null){
+      ftp = new FtpHelper(this);
+    }
+    return ftp;
+  }
+
+  public WebDriver getDriver() {
+    if (driver == null){
+      if (browser.equals(BrowserType.FIREFOX)) {
+        driver = new FirefoxDriver();
+      } else if (browser.equals(BrowserType.CHROME)) {
+        driver = new ChromeDriver();
+      } else if (browser.equals(BrowserType.IEXPLORE)) {
+        driver = new InternetExplorerDriver();
+      }
+      driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+      driver.get(properties.getProperty("web.baseUrl"));
+    }
+    return driver;
+  }
 }
