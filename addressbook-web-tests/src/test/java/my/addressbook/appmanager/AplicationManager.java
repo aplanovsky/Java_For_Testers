@@ -1,9 +1,7 @@
 package my.addressbook.appmanager;
 
 
-import org.openqa.selenium.Capabilities;
-import org.openqa.selenium.Platform;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -83,5 +81,8 @@ public class AplicationManager {
 
   public DbHelper db(){
     return dbHelper;
+  }
+  public byte[] takeScreenshots(){
+    return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
   }
 }

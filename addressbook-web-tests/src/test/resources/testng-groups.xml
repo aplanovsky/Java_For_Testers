@@ -3,9 +3,9 @@
 <suite name="Suite1" verbose="1" >
     <test name="Groups" >
         <classes>
-            <!--<class name="my.addressbook.tests.GroupCreationTests" />-->
+            <class name="my.addressbook.tests.GroupCreationTests" />
             <class name="my.addressbook.tests.GroupModificationTests" />
-            <!--<class name="my.addressbook.tests.GroupDeletionTests" />-->
+            <class name="my.addressbook.tests.GroupDeletionTests" />
         </classes>
     </test>
 
