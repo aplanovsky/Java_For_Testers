@@ -2,7 +2,9 @@
 Library    my.addressbook.rf.AddressbookKeyword
 Suite Setup    Init Aplication Manager
 Suite Teardown    Stop Aplication Manager
-
+Library    my.addressbook.rf.AddressbookKeyword
+Suite Setup    Init Application Manager
+Suite Teardown    Stop Application Manager
 
 *** Test Cases ***
 Can Create Group With Valid Data
